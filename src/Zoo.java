@@ -6,22 +6,19 @@ public class Zoo {
 
     public Zoo() {
     }
+
     public Zoo(String name, String city) {
         this.name = name;
         this.city = city;
         animals = new Animal[NBR_CAGES];
     }
 
-    /*public void displayZoo(){
-        System.out.println("Zoo name: " + name + ", city: " + city + ", nbrCages: " + NBR_CAGES);
-    }*/
-
     @Override
     public String toString() {
         return "Zoo name: " + name + ", city: " + city + ", nbrCages: " + NBR_CAGES;
     }
 
-    boolean addAnimal1(Animal animal){
+    /* boolean addAnimal(Animal animal){
         if (searchAnimal2(animal) == -1){
             for (int i=0 ; i<NBR_CAGES; i++ ){
                 if (animals[i] == null){
@@ -31,51 +28,7 @@ public class Zoo {
             }
         }
         return false;
-    }
-
-    void displayZoo(){
-        for(Animal anim : animals){
-            if (anim == null)
-                return;
-            System.out.println(anim);
-        }
-    }
-
-    int searchAnimal2(Animal animal){
-        for (int i=0 ; i<NBR_CAGES; i++ ){
-            if(animals[i] == null)
-                return -1;
-            if (animals[i].name.equals(animal.name)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    boolean removeAnimal2(Animal animal){
-        int indexAnimal = searchAnimal2(animal);
-        int nbrAnim = 0;
-        if (indexAnimal == -1)
-            return false;
-        else {
-            for (int i=0 ; i<NBR_CAGES; i++ ){
-                if (animals[i] != null){
-                    nbrAnim++;
-                }
-            }
-
-            for (int i = indexAnimal ; i<=nbrAnim; i++){
-                    animals[i] = animals[i+1];
-            }
-            return true;
-        }
-    }
-
-    boolean isZooFull1(){
-        return animals[NBR_CAGES-1] != null;
-    }
-
-    //=======================
+    } */
 
     boolean addAnimal(Animal animal){
         if(this.searchAnimal(animal) == -1){
@@ -92,6 +45,14 @@ public class Zoo {
         return false;
     }
 
+    /* void displayZoo(){
+        for(Animal anim : animals){
+            if (anim == null)
+                return;
+            System.out.println(anim);
+        }
+    } */
+
     void showAnimals(){
         System.out.print(this.name + " = ");
         for (int i=0;i<NBR_CAGES;i++){
@@ -102,6 +63,17 @@ public class Zoo {
         System.out.print("\n");
     }
 
+    /*int searchAnimal(Animal animal){
+        for (int i=0 ; i<NBR_CAGES; i++ ){
+            if(animals[i] == null)
+                return -1;
+            if (animals[i].name.equals(animal.name)){
+                return i;
+            }
+        }
+        return -1;
+    }*/
+
     int searchAnimal(Animal animal){
         for (int i=0;i<NBR_CAGES;i++){
             if (animals[i] != null && animals[i].name.equals(animal.name)){
@@ -110,6 +82,25 @@ public class Zoo {
         }
         return -1;
     }
+
+    /* boolean removeAnimal(Animal animal){
+        int indexAnimal = searchAnimal(animal);
+        int nbrAnim = 0;
+        if (indexAnimal == -1)
+            return false;
+        else {
+            for (int i=0 ; i<NBR_CAGES; i++ ){
+                if (animals[i] != null){
+                    nbrAnim++;
+                }
+            }
+
+            for (int i = indexAnimal ; i<=nbrAnim; i++){
+                    animals[i] = animals[i+1];
+            }
+            return true;
+        }
+    } */
 
     boolean removeAnimal(Animal animal){
         if (this.searchAnimal(animal) != -1){
@@ -123,6 +114,10 @@ public class Zoo {
         }else{System.out.println("Animal not found");}
         return false;
     }
+
+    /* boolean isZooFull(){
+        return animals[NBR_CAGES-1] != null;
+    }*/
 
     boolean isZooFull(){
         int nbrAnimals = 0;
@@ -143,23 +138,21 @@ public class Zoo {
         }
         return nbrAnimal;
     }
-    /*
-    static Zoo comparerZoo(Zoo z1, Zoo z2){
+
+    /* static Zoo comparerZoo(Zoo z1, Zoo z2){
         int nbrAnimalsZ1 = 0;
         int nbrAnimalsZ2 = 0;
         for(int i=0;i<NBR_CAGES;i++) if(z1.animals[i] != null) nbrAnimalsZ1++;
         for(int i=0;i<NBR_CAGES;i++) if(z2.animals[i] != null) nbrAnimalsZ2++;
         return (nbrAnimalsZ1 > nbrAnimalsZ2) ? z1 : z2;
-    }*/
+    } */
 
     static Zoo comparerZoo(Zoo z1, Zoo z2){
         if (nbrAnimaux(z1) > nbrAnimaux(z2) ){
             return z1;
-        }else if (nbrAnimaux(z1) == nbrAnimaux(z2)){
+        } else if (nbrAnimaux(z1) == nbrAnimaux(z2)){
             return z2;
-        }
-        else
+        } else
             return z2;
     }
-
 }

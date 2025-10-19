@@ -17,20 +17,9 @@ public class Main {
 
         frigya.addAnimal(chien);
         frigya.addAnimal(chat);
-        //frigya.addAnimal(rat);
+        frigya.addAnimal(rat);
 
-        System.out.println(frigya.addAnimal1(rat));
-        frigya.displayZoo();
-
-        System.out.println(frigya.removeAnimal2(chien));
-
-        frigya.displayZoo();
-        System.out.println(frigya.isZooFull1());
-
-        System.out.println(Zoo.comparerZoo(frigya,Belvedere));
-
-
-        /*Belvedere.addAnimal(vache);
+        Belvedere.addAnimal(vache);
 
         frigya.showAnimals();
         Belvedere.showAnimals();
@@ -40,7 +29,7 @@ public class Main {
 
         System.out.println(frigya.isZooFull());
 
-        System.out.println(Zoo.comparerZoo(frigya,Belvedere));*/
+        System.out.println(Zoo.comparerZoo(frigya,Belvedere));
 
     }
 }
