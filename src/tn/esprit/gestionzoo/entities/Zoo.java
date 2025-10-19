@@ -1,8 +1,10 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Zoo {
-    Animal[] animals;
-    String name;
-    String city;
-    static final int NBR_CAGES = 25;
+    private Animal[] animals;
+    private String name;
+    private String city;
+    private static final int NBR_CAGES = 25;
 
     public Zoo() {
     }
@@ -18,7 +20,27 @@ public class Zoo {
         return "Zoo name: " + name + ", city: " + city + ", nbrCages: " + NBR_CAGES;
     }
 
-    /* boolean addAnimal(Animal animal){
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public static int getNbrCages() {
+        return NBR_CAGES;
+    }
+
+    /* public boolean addAnimal(Animal animal){
         if (searchAnimal2(animal) == -1){
             for (int i=0 ; i<NBR_CAGES; i++ ){
                 if (animals[i] == null){
@@ -30,12 +52,12 @@ public class Zoo {
         return false;
     } */
 
-    boolean addAnimal(Animal animal){
-        if(this.searchAnimal(animal) == -1){
+    public boolean addAnimal(Animal animal){
+        if(this.searchAnimal(animal) == -1 && !isZooFull()){
             for (int i =0; i<NBR_CAGES;i++){
                 if (animals[i] == null){
                     animals[i] = animal;
-                    System.out.println("Animal "+animals[i].name+" added successfully to "+ this.name);
+                    System.out.println("Animal "+animals[i].getName()+" added successfully to "+ this.name);
                     return true;
                 }
             }
@@ -45,7 +67,7 @@ public class Zoo {
         return false;
     }
 
-    /* void displayZoo(){
+    /* public void displayZoo(){
         for(Animal anim : animals){
             if (anim == null)
                 return;
@@ -53,17 +75,17 @@ public class Zoo {
         }
     } */
 
-    void showAnimals(){
+    public void showAnimals(){
         System.out.print(this.name + " = ");
         for (int i=0;i<NBR_CAGES;i++){
             if (animals[i]!=null){
-                System.out.print(animals[i].name+" | ");
+                System.out.print(animals[i].getName()+" | ");
             }
         }
         System.out.print("\n");
     }
 
-    /*int searchAnimal(Animal animal){
+    /*public int searchAnimal(Animal animal){
         for (int i=0 ; i<NBR_CAGES; i++ ){
             if(animals[i] == null)
                 return -1;
@@ -74,16 +96,16 @@ public class Zoo {
         return -1;
     }*/
 
-    int searchAnimal(Animal animal){
+    public int searchAnimal(Animal animal){
         for (int i=0;i<NBR_CAGES;i++){
-            if (animals[i] != null && animals[i].name.equals(animal.name)){
+            if (animals[i] != null && animals[i].getName().equals(animal.getName())){
                 return i;
             }
         }
         return -1;
     }
 
-    /* boolean removeAnimal(Animal animal){
+    /* public boolean removeAnimal(Animal animal){
         int indexAnimal = searchAnimal(animal);
         int nbrAnim = 0;
         if (indexAnimal == -1)
@@ -102,11 +124,11 @@ public class Zoo {
         }
     } */
 
-    boolean removeAnimal(Animal animal){
+    public boolean removeAnimal(Animal animal){
         if (this.searchAnimal(animal) != -1){
             for (int i=0;i<NBR_CAGES;i++){
                 if (animals[i] == animal){
-                    System.out.println("Animal "+ animals[i].name +" removed successfully from "+ this.name);
+                    System.out.println("Animal "+ animals[i].getName() +" removed successfully from "+ this.name);
                     animals[i] = null;
                     return true;
                 }
@@ -115,11 +137,11 @@ public class Zoo {
         return false;
     }
 
-    /* boolean isZooFull(){
+    /* public boolean isZooFull(){
         return animals[NBR_CAGES-1] != null;
     }*/
 
-    boolean isZooFull(){
+    public boolean isZooFull(){
         int nbrAnimals = 0;
         for (int i=0;i<NBR_CAGES;i++){
             if (animals[i]!=null){
@@ -129,7 +151,7 @@ public class Zoo {
         return nbrAnimals == NBR_CAGES;
     }
 
-    static int nbrAnimaux(Zoo zoo){
+    public static int nbrAnimaux(Zoo zoo){
         int nbrAnimal = 0;
         for (int i=0;i<NBR_CAGES;i++){
             if (zoo.animals[i]!=null){
@@ -139,7 +161,7 @@ public class Zoo {
         return nbrAnimal;
     }
 
-    /* static Zoo comparerZoo(Zoo z1, Zoo z2){
+    /* public static Zoo comparerZoo(Zoo z1, Zoo z2){
         int nbrAnimalsZ1 = 0;
         int nbrAnimalsZ2 = 0;
         for(int i=0;i<NBR_CAGES;i++) if(z1.animals[i] != null) nbrAnimalsZ1++;
@@ -147,7 +169,7 @@ public class Zoo {
         return (nbrAnimalsZ1 > nbrAnimalsZ2) ? z1 : z2;
     } */
 
-    static Zoo comparerZoo(Zoo z1, Zoo z2){
+    public static Zoo comparerZoo(Zoo z1, Zoo z2){
         if (nbrAnimaux(z1) > nbrAnimaux(z2) ){
             return z1;
         } else if (nbrAnimaux(z1) == nbrAnimaux(z2)){
