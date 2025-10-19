@@ -6,8 +6,9 @@ public class Zoo {
     private String city;
     private static final int NBR_CAGES = 25;
 
-    public Zoo() {
-    }
+    Aquatic[] aquaticAnimals = new Aquatic[10];
+
+    public Zoo() {}
 
     public Zoo(String name, String city) {
         this.name = name;
@@ -176,5 +177,47 @@ public class Zoo {
             return z2;
         } else
             return z2;
+    }
+
+    public void addAquaticAnimal(Aquatic aquatic){
+        for (int i=0;i<10;i++){
+            if (aquaticAnimals[i] == null){
+                aquaticAnimals[i] = aquatic;
+                System.out.println("auqtic annimal added!");
+                 aquaticAnimals[i].swim();
+                return;
+            }
+        }
+    }
+
+    public float maxPenguinSwimmingDepth(){
+        float maxSwimmingDepth = 0f;
+        for (int i=0;i<10;i++){
+            if (aquaticAnimals[i]!=null && aquaticAnimals[i].getClass().equals(Penguin.class)){
+                Penguin Pengu = (Penguin) aquaticAnimals[i]; // down cast implicit to use getSwimmingDepth
+                if (maxSwimmingDepth < Pengu.getSwimmingDepth()){
+                    maxSwimmingDepth = Pengu.getSwimmingDepth();
+                }
+            }
+        }
+        return maxSwimmingDepth;
+    }
+
+    public void displayNumberOfAquaticsByType(){
+        int nbrDolphins = 0;
+        int nbrPengus = 0;
+
+        for (int i=0;i<10;i++){
+            if (aquaticAnimals[i]!=null && aquaticAnimals[i].getClass().equals(Dolphin.class)){
+                nbrDolphins++;
+            }else if (aquaticAnimals[i]!=null  && aquaticAnimals[i].getClass().equals(Penguin.class)){
+                nbrPengus++;
+            }
+        }
+
+        System.out.println("=====================================");
+        System.out.println("We have "+nbrDolphins+" Dolphin(s)");
+        System.out.println("We have "+nbrPengus+" Penguins(s)");
+        System.out.println("=====================================");
     }
 }
